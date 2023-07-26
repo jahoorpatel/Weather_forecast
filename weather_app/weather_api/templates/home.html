@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+          }
+          
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          }
+          
+        h1 {
+            text-align: center;
+          }
+          
+        label {
+            display: block;
+            margin-bottom: 10px;
+          }
+          
+          select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          }
+          
+        #output {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          }
+          
+    </style>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="choice">Select an option:</label>
+        <select name="choice" id="choice">
+            <option value="1">Get weather</option>
+            <option value="2">Get Wind Speed</option>
+            <option value="3">Get Pressure</option>
+        </select>
+        <br>
+        <label for="date">Enter the date (YYYY-MM-DD):</label>
+        <input type="text" name="date" id="date">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="output">
+        {% if error %}
+          <p>{{ error }}</p>
+        {% elif result %}
+          <p>{{ result }}</p>
+        {% endif %}
+    </div>
+
+   
+</body>
+</html>
